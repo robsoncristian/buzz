@@ -1,0 +1,9 @@
+{
+  "name": "Buzz",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "Marketing",
+  "dependencies": {
+    "rung-cli": "0.8.0"
+  }
+}
