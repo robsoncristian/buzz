@@ -8,7 +8,7 @@ import { map, mergeAll } from 'ramda';
 const request = promisifyAgent(agent, Bluebird);
 
 const newsApiUrl = 'https://api.cognitive.microsoft.com/bing/v5.0/news/search';
-const newsApiToken = '<< token >>';
+const newsApiToken = '<<token>>';
 
 const styles = {
   container: {
@@ -50,7 +50,7 @@ function main(context,done) {
     .get(newsApiUrl)
     .set('Ocp-Apim-Subscription-Key', newsApiToken)
     .set('Accept', 'application/json')
-    .query({q:brand,mkt:'pt-BR',count:10,setLang:'pt',freshness:'Day',originalImg:'true'})
+    .query({q:brand,mkt:'pt-BR',count:10,setLang:'pt',originalImg:'true'})
     .then(({ body }) => {
       const alerts = mergeAll(map(render, body.value));
       done({ alerts });
@@ -71,8 +71,7 @@ const params = {
 export default create(main, { 
   params,
   primaryKey: true,
-  sidebar: {
-    startDate: false,
-        endDate: false
-  } 
+  title:'Buzz',
+  description:'As notícias que saem sobre sua marca',
+  preview: getContent("O Rung foi lançado nos EUA")
 });
